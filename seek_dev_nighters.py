@@ -8,8 +8,8 @@ def load_attempts():
     result = requests.get(url).json()
     pages = result.get('number_of_pages')
     for page in range(pages):
-        url = 'https://devman.org/api/challenges/solution_attempts/?page={}'.format(page + 1)
-        result = requests.get(url).json()
+        result = requests.get(url, params={'page': page + 1})
+        result = result.json()
         yield result.get('records')
 
 
